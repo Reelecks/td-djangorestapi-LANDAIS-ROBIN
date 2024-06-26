@@ -1,0 +1,72 @@
+{% extends "research_tracker/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Liste des Publications</h2>
+    <a href="{% url 'add_publication' %}" class="btn btn-primary mb-3">Ajouter une Publication</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Résumé</th>
+                <th>Projet associé</th>
+                <th>Date de publication</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="publications-list">
+            <!-- Les données seront insérées ici par JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accessToken = getCookie('access_token');
+        console.log("Access Token on publications_list page: ", accessToken);  // Check if the token is available
+
+        if (accessToken) {
+            fetch('/api/publications/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);  // Log the data to see the response
+                const publicationsList = document.getElementById('publications-list');
+                data.forEach(publication => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${publication.titre}</td>
+                        <td>${publication.resume}</td>
+                        <td>${publication.projet_associe.titre}</td>
+                        <td>${publication.date_publication}</td>
+                        <td>
+                            <a href="{% url 'edit_publication' 0 %}".replace(0, publication.id) class="btn btn-secondary">Modifier</a>
+                            <a href="{% url 'delete_publication' 0 %}".replace(0, publication.id) class="btn btn-danger">Supprimer</a>
+                        </td>
+                    `;
+                    publicationsList.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+        }
+    });
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+</script>
+{% endblock %}

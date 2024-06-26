@@ -1,0 +1,40 @@
+{% extends "research_tracker/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Recherche Avancée</h2>
+    <form method="GET" action="{% url 'search' %}">
+        <div class="form-group">
+            <input type="text" name="q" class="form-control" placeholder="Rechercher..." value="{{ search_query }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+    
+    <h3 class="mt-4">Chercheurs</h3>
+    <ul>
+        {% for chercheur in chercheurs %}
+        <li>{{ chercheur.nom }} - {{ chercheur.specialite }}</li>
+        {% empty %}
+        <li>Aucun chercheur trouvé.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Projets</h3>
+    <ul>
+        {% for projet in projets %}
+        <li>{{ projet.titre }} - {{ projet.description }}</li>
+        {% empty %}
+        <li>Aucun projet trouvé.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Publications</h3>
+    <ul>
+        {% for publication in publications %}
+        <li>{{ publication.titre }} - {{ publication.resume }}</li>
+        {% empty %}
+        <li>Aucune publication trouvée.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

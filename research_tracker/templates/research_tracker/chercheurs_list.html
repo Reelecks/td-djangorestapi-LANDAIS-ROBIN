@@ -1,0 +1,66 @@
+{% extends "research_tracker/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Liste des Chercheurs</h2>
+    <a href="{% url 'add_chercheur' %}" class="btn btn-primary mb-3">Ajouter un Chercheur</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Spécialité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="chercheurs-list">
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accessToken = getCookie('access_token');
+
+        if (accessToken) {
+            fetch('/api/chercheurs/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const chercheursList = document.getElementById('chercheurs-list');
+                data.forEach(chercheur => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${chercheur.nom}</td>
+                        <td>${chercheur.specialite}</td>
+                        <td>
+                            <a href="{% url 'edit_chercheur' 0 %}".replace(0, chercheur.id) class="btn btn-secondary">Modifier</a>
+                            <a href="{% url 'delete_chercheur' 0 %}".replace(0, chercheur.id) class="btn btn-danger">Supprimer</a>
+                        </td>
+                    `;
+                    chercheursList.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+        }
+    });
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+</script>
+{% endblock %}

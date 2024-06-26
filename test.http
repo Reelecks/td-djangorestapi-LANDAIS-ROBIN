@@ -1,0 +1,41 @@
+### Get all chercheurs
+GET http://127.0.0.1:8000/api/chercheurs/
+
+### Create a new chercheur
+POST http://127.0.0.1:8000/api/chercheurs/
+Content-Type: application/json
+
+{
+    "nom": "Jean Dupont",
+    "specialite": "Biologie"
+}
+
+### Get all projets
+GET http://127.0.0.1:8000/api/projets/
+
+### Create a new projet
+POST http://127.0.0.1:8000/api/projets/
+Content-Type: application/json
+
+{
+    "titre": "Projet Alpha",
+    "description": "Un projet de recherche sur les nouvelles technologies.",
+    "date_debut": "2024-01-01",
+    "date_fin_prevue": "2025-01-01",
+    "chef_de_projet": 1,
+    "chercheurs": [1]
+}
+
+### Get all publications
+GET http://127.0.0.1:8000/api/publications/
+
+### Create a new publication
+POST http://127.0.0.1:8000/api/publications/
+Content-Type: application/json
+
+{
+    "titre": "Publication Alpha",
+    "resume": "Résumé de la publication.",
+    "projet_associe": 1,
+    "date_publication": "2024-06-01"
+}
