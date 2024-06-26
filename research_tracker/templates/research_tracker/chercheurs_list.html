@@ -38,7 +38,6 @@
             })
             .then(data => {
                 const chercheursList = document.getElementById('chercheurs-list');
-                console.log(data)
                 data.forEach(chercheur => {
                     const editUrl = "{% url 'edit_chercheur' '0' %}".replace('0', chercheur.id);
                     const deleteUrl = "{% url 'delete_chercheur' '0' %}".replace('0', chercheur.id);

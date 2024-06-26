@@ -11,8 +11,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
+from rest_framework.response import Response
+from .serializers import ChercheurSerializer, ProjetDeRechercheSerializer, PublicationSerializer
 
-# Vues API (JSON)
+
+# Vues api
 # Chercheurs
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])

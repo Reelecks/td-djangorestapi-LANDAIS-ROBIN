@@ -3,8 +3,8 @@ POST http://localhost:8000/api/token/
 Content-Type: application/json
 
 {
-  "username": "root",
-  "password": "root"
+  "username": "your_username",
+  "password": "your_password"
 }
 
 ### Rafraîchissement du jeton d'accès
