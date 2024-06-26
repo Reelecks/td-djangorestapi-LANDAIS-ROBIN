@@ -10,32 +10,38 @@ Ce projet est une application Django pour le suivi de projets de recherche, perm
 ### Coner le projet : 
 #### Étapes : 
 Clonez le dépôt :
+```bat
 git clone https://github.com/YOUR_GITHUB_USERNAME/td-djangorestapi-LANDAIS-ROBIN.git
 cd td-djangorestapi-LANDAIS-ROBIN
-
+``` 
 
 Créez et activez un environnement virtuel :
+```bat
 python -m venv env
 source env/bin/activate  # Pour Unix/macOS
 env\Scripts\activate  # Pour Windows
-
+``` 
 
 Installez les dépendances :
+```bat
 pip install -r requirements.txt
-
+``` 
 
 Appliquez les migrations de la base de données :
+```bat
 python manage.py makemigrations
 python manage.py migrate
-
+``` 
 
 Créez un superutilisateur :
+```bat
 python manage.py createsuperuser  
-
+``` 
 
 Lancez le serveur de développement :
+```bat
 python manage.py runserver
-
+``` 
 
 Accédez à l'application :
 Ouvrez votre navigateur et accédez à http://localhost:8000.
