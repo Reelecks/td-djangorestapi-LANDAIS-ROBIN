@@ -1,41 +1,122 @@
-### Get all chercheurs
-GET http://127.0.0.1:8000/api/chercheurs/
-
-### Create a new chercheur
-POST http://127.0.0.1:8000/api/chercheurs/
+# Obtention d'un jeton d'accès
+POST http://localhost:8000/api/token/
 Content-Type: application/json
 
 {
-    "nom": "Jean Dupont",
-    "specialite": "Biologie"
+  "username": "root",
+  "password": "root"
 }
 
-### Get all projets
-GET http://127.0.0.1:8000/api/projets/
-
-### Create a new projet
-POST http://127.0.0.1:8000/api/projets/
+### Rafraîchissement du jeton d'accès
+POST http://localhost:8000/api/token/refresh/
 Content-Type: application/json
 
 {
-    "titre": "Projet Alpha",
-    "description": "Un projet de recherche sur les nouvelles technologies.",
-    "date_debut": "2024-01-01",
-    "date_fin_prevue": "2025-01-01",
-    "chef_de_projet": 1,
-    "chercheurs": [1]
+  "refresh": "your_refresh_token"
 }
 
-### Get all publications
-GET http://127.0.0.1:8000/api/publications/
+### Liste des chercheurs
+GET http://localhost:8000/api/chercheurs/
+Authorization: Bearer {{access_token}}
 
-### Create a new publication
-POST http://127.0.0.1:8000/api/publications/
+### Création d'un chercheur
+POST http://localhost:8000/api/chercheurs/
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
-    "titre": "Publication Alpha",
-    "resume": "Résumé de la publication.",
-    "projet_associe": 1,
-    "date_publication": "2024-06-01"
+  "nom": "John Doe",
+  "specialite": "Biology"
 }
+
+### Détail d'un chercheur
+GET http://localhost:8000/api/chercheurs/1/
+Authorization: Bearer {{access_token}}
+
+### Mise à jour d'un chercheur
+PUT http://localhost:8000/api/chercheurs/1/
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "nom": "Jane Doe",
+  "specialite": "Physics"
+}
+
+### Suppression d'un chercheur
+DELETE http://localhost:8000/api/chercheurs/1/
+Authorization: Bearer {{access_token}}
+
+### Liste des projets de recherche
+GET http://localhost:8000/api/projets/
+Authorization: Bearer {{access_token}}
+
+### Création d'un projet de recherche
+POST http://localhost:8000/api/projets/
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "titre": "New Research Project",
+  "description": "This is a new research project.",
+  "date_debut": "2023-01-01",
+  "date_fin_prevue": "2023-12-31",
+  "chef_projet": 1
+}
+
+### Détail d'un projet de recherche
+GET http://localhost:8000/api/projets/1/
+Authorization: Bearer {{access_token}}
+
+### Mise à jour d'un projet de recherche
+PUT http://localhost:8000/api/projets/1/
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "titre": "Updated Research Project",
+  "description": "This is an updated research project.",
+  "date_debut": "2023-01-01",
+  "date_fin_prevue": "2023-12-31",
+  "chef_projet": 1
+}
+
+### Suppression d'un projet de recherche
+DELETE http://localhost:8000/api/projets/1/
+Authorization: Bearer {{access_token}}
+
+### Liste des publications
+GET http://localhost:8000/api/publications/
+Authorization: Bearer {{access_token}}
+
+### Création d'une publication
+POST http://localhost:8000/api/publications/
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "titre": "New Publication",
+  "resume": "This is a new publication.",
+  "projet_associe": 1,
+  "date_publication": "2023-01-01"
+}
+
+### Détail d'une publication
+GET http://localhost:8000/api/publications/1/
+Authorization: Bearer {{access_token}}
+
+### Mise à jour d'une publication
+PUT http://localhost:8000/api/publications/1/
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "titre": "Updated Publication",
+  "resume": "This is an updated publication.",
+  "projet_associe": 1,
+  "date_publication": "2023-01-01"
+}
+
+### Suppression d'une publication
+DELETE http://localhost:8000/api/publications/1/
+Authorization: Bearer {{access_token}}

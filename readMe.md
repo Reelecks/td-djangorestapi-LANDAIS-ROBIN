@@ -110,3 +110,14 @@ Méthode : GET (Lister), POST (Créer)
 Détails, mise à jour et suppression :
 URL : http://localhost:8000/api/publications/<id>/
 Méthode : GET (Détails), PUT (Mise à jour), DELETE (Suppression)
+
+
+### Explication du fichier test.http
+- Obtention et rafraîchissement des jetons d'accès : Les premières requêtes permettent d'obtenir et de rafraîchir le jeton d'accès nécessaire pour accéder aux routes protégées de l'API.
+- equêtes CRUD pour les chercheurs, projets de recherche et publications : Chaque entité a des requêtes pour lister, créer, obtenir les détails, mettre à jour et supprimer les entrées.
+### Instructions pour l'utilisation
+- Inscrivez vous dabord sur la palteforme web pour créer un compte
+- Remplissez les valeurs your_username et your_password avec les informations de connexion de votre utilisateur.
+- Obtenez le access_token en exécutant la première requête.
+- Utilisez le access_token obtenu dans les requêtes suivantes en remplaçant {{access_token}}.
+- Utilisez un outil comme VS Code avec l'extension REST Client ou Postman pour exécuter ces requêtes.
