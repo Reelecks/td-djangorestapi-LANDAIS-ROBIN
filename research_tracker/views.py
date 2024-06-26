@@ -154,7 +154,7 @@ def edit_chercheur(request, id):
             return redirect('chercheurs_list')
     else:
         form = ChercheurForm(instance=chercheur)
-    return render(request, 'research_tracker/add_chercheur.html', {'form': form})
+    return render(request, 'research_tracker/edit_chercheur.html', {'form': form})
 
 @login_required
 def delete_chercheur(request, id):
@@ -185,7 +185,7 @@ def edit_projet(request, id):
             return redirect('projets_list')
     else:
         form = ProjetDeRechercheForm(instance=projet)
-    return render(request, 'research_tracker/add_projet.html', {'form': form})
+    return render(request, 'research_tracker/edit_projet.html', {'form': form})
 
 @login_required
 def delete_projet(request, id):
@@ -216,7 +216,7 @@ def edit_publication(request, id):
             return redirect('publications_list')
     else:
         form = PublicationForm(instance=publication)
-    return render(request, 'research_tracker/add_publication.html', {'form': form})
+    return render(request, 'research_tracker/edit_publication.html', {'form': form})
 
 @login_required
 def delete_publication(request, id):

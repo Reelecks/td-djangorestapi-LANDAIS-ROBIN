@@ -2,38 +2,40 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Recherche Avancée</h2>
-    <form method="GET" action="{% url 'search' %}">
+    <h2 class="text-center">Recherche Avancée</h2>
+    <form method="GET" action="{% url 'search' %}" class="p-4 border rounded bg-white">
         <div class="form-group">
             <input type="text" name="q" class="form-control" placeholder="Rechercher..." value="{{ search_query }}">
         </div>
-        <button type="submit" class="btn btn-primary">Rechercher</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </div>
     </form>
     
     <h3 class="mt-4">Chercheurs</h3>
-    <ul>
+    <ul class="list-group">
         {% for chercheur in chercheurs %}
-        <li>{{ chercheur.nom }} - {{ chercheur.specialite }}</li>
+        <li class="list-group-item">{{ chercheur.nom }} - {{ chercheur.specialite }}</li>
         {% empty %}
-        <li>Aucun chercheur trouvé.</li>
+        <li class="list-group-item">Aucun chercheur trouvé.</li>
         {% endfor %}
     </ul>
 
-    <h3>Projets</h3>
-    <ul>
+    <h3 class="mt-4">Projets</h3>
+    <ul class="list-group">
         {% for projet in projets %}
-        <li>{{ projet.titre }} - {{ projet.description }}</li>
+        <li class="list-group-item">{{ projet.titre }} - {{ projet.description }}</li>
         {% empty %}
-        <li>Aucun projet trouvé.</li>
+        <li class="list-group-item">Aucun projet trouvé.</li>
         {% endfor %}
     </ul>
 
-    <h3>Publications</h3>
-    <ul>
+    <h3 class="mt-4">Publications</h3>
+    <ul class="list-group">
         {% for publication in publications %}
-        <li>{{ publication.titre }} - {{ publication.resume }}</li>
+        <li class="list-group-item">{{ publication.titre }} - {{ publication.resume }}</li>
         {% empty %}
-        <li>Aucune publication trouvée.</li>
+        <li class="list-group-item">Aucune publication trouvée.</li>
         {% endfor %}
     </ul>
 </div>

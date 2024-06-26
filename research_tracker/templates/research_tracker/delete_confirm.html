@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Confirmer la Suppression</h2>
-    <p>Êtes-vous sûr de vouloir supprimer {{ object }} ?</p>
-    <form method="POST">
+    <h2 class="text-center">Confirmer la Suppression</h2>
+    <p>Êtes-vous sûr de vouloir supprimer <strong>{{ object }}</strong> ?</p>
+    <form method="POST" class="text-center">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Supprimer</button>
         <a href="javascript:history.back()" class="btn btn-secondary">Annuler</a>

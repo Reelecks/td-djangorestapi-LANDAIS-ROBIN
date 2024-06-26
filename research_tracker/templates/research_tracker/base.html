@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <title>Research Project Tracker</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-3VFScyTwDbbQv5Ba+c3MX/xamk+y+n0tZFLR9C7E5IyyuQFbm7LgkPb8ENgXN1uB" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Research Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'chercheurs_list' %}">Chercheurs</a>
@@ -23,7 +31,7 @@
                     <a class="nav-link" href="{% url 'search' %}">Recherche Avancée</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout_view' %}">Déconnexion</a>
+                    <a class="nav-link btn btn-outline-light" href="{% url 'logout_view' %}">Déconnexion</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -36,31 +44,30 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container mt-5">
         {% block content %}
         {% endblock %}
     </div>
-
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accessToken = getCookie('access_token');
-            if (accessToken) {
-                const originalFetch = fetch;
-                window.fetch = function(url, options = {}) {
-                    options.headers = options.headers || {};
-                    options.headers['Authorization'] = `Bearer ${accessToken}`;
-                    return originalFetch(url, options);
-                };
-            } else {
-                console.log("No access token found.");
-            }
-        });
-
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
+    document.addEventListener('DOMContentLoaded', function() {
+        const accessToken = getCookie('access_token');
+        if (accessToken) {
+            const originalFetch = fetch;
+            window.fetch = function(url, options = {}) {
+                options.headers = options.headers || {};
+                options.headers['Authorization'] = `Bearer ${accessToken}`;
+                return originalFetch(url, options);
+            };
+        } else {
+            console.log("No access token found.");
         }
-    </script>
+    });
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+</script>
 </body>
 </html>

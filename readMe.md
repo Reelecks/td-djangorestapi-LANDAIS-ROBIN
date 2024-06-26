@@ -61,7 +61,7 @@ Ouvrez votre navigateur et accédez à http://localhost:8000.
 
 ##### Authentification 
 Pour récuperer un jeton il faut d'abord s'inscrire sur le frontend : http://localhost:8000/register/
-
+Pour plus d'informations utiliser : http://localhost:8000/redoc ou http://localhost:8000/swagger
 URL : http://localhost:8000/api/token/
 Méthode : POST
 

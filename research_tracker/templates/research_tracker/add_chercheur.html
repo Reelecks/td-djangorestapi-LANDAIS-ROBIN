@@ -2,11 +2,13 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Ajouter un Chercheur</h2>
-    <form method="POST">
+    <h2 class="text-center">Ajouter un Chercheur</h2>
+    <form method="POST" class="p-4 border rounded bg-white">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
     </form>
 </div>
 {% endblock %}
